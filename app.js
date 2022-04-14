@@ -73,13 +73,13 @@ function mainMenu(person, people) {
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
-            alert(personFamily);
+            displayPeople(personFamily);
             break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
+            displayPeople(personDescendants);
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -150,7 +150,34 @@ function displayPerson(person) {
     alert(personInfo);
 }
 // End of displayPerson()
-
+function findPersonFamily(person, people) {
+    let family = [];
+    if (person.currentSpouse) {
+      var spouse = people.filter((el) => {
+        return el.id === person.currentSpouse;
+      });
+      family.push(...spouse);
+    }
+  
+    if (person.parents) {
+      var parents = people.filter((el) => {
+        return person.parents.includes(el.id);
+      });
+      family.push(...parents);
+    }
+  
+    var siblings = people.filter((el) => {
+        for (let parent of person.parents) {
+            if (el.parents.includes(parent) && el !== person) {
+          return true;
+        }
+      }
+    });
+    family.push(...siblings);
+    return family;
+  }
+  // End of findPersonFamily()
+  
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
@@ -190,4 +217,6 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+
 
