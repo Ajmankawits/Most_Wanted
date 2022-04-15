@@ -174,7 +174,7 @@ function findPersonFamily(person, people) {
 
 
 /**
- * This function's purpose is twofold:
+
  * First, to generate a prompt with the value passed in to the question parameter.
  * Second, to ensure the user input response has been validated.
  * @param {String} question     A string that will be passed into prompt().
@@ -265,7 +265,7 @@ function searchConfirmation(results, people){
 }
   
 /**
- * This helper function checks to see if the value passed into input is a "yes" or "no."
+ 
  * @param {String} input        A string that will be normalized via .toLowerCase().
  * @returns {Boolean}           The result of our condition evaluation.
  */
@@ -292,7 +292,7 @@ function findPersonDescendants(person, people) {
     return descendants;
 }
 /**
- * This helper function operates as a default callback for promptFor's validation.
+ 
  * Feel free to modify this to suit your needs.
  * @param {String} input        A string.
  * @returns {Boolean}           Default validation -- no logic yet.
