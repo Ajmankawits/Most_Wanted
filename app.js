@@ -143,7 +143,7 @@ function displayPerson(person) {
     personInfo += `Gender: ${person.gender}\n`;
     personInfo += `DOB: ${person.dob}\n`;
     personInfo += `Height: ${person.height} in.\n`;
-    personInfo += `Weight: ${person.weight} in.\n`;
+    personInfo += `Weight: ${person.weight} lb.\n`;
     personInfo += `Eye Color: ${person.eyeColor}\n`;
     personInfo += `Occupation: ${person.occupation}\n`; 
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
@@ -153,20 +153,20 @@ function displayPerson(person) {
 function findPersonFamily(person, people) {
     let family = [];
     if (person.currentSpouse) {
-      var spouse = people.filter((el) => {
+      var spouse = people.filter(function(el) {
         return el.id === person.currentSpouse;
       });
       family.push(...spouse);
     }
   
     if (person.parents) {
-      var parents = people.filter((el) => {
+      var parents = people.filter(function(el) {
         return person.parents.includes(el.id);
       });
       family.push(...parents);
     }
   
-    var siblings = people.filter((el) => {
+    var siblings = people.filter(function(el) {
         for (let parent of person.parents) {
             if (el.parents.includes(parent) && el !== person) {
           return true;
@@ -175,9 +175,9 @@ function findPersonFamily(person, people) {
     });
     family.push(...siblings);
     return family;
-  }
-  // End of findPersonFamily()
-  
+}
+
+
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
@@ -193,7 +193,31 @@ function promptFor(question, valid) {
     return response;
 }
 // End of promptFor()
+function searchByTraits(people) {
+    let chosenSearch = promptFor(
+      "Are you looking for a single trait? Please enter: 'yes' or 'no'",
+      yesNo
+    ).toLowerCase();
+    let Results, ChosenPerson;
+    switch (chosenSearch) {
+      case "yes":
+        Results = searchBySingleTrait(people);
+        
+        ChosenPerson = searchConfirmation(Results, people);
+        break;
+      case "no":
+        Results = searchByMultipleTraits(people);
+        ChosenPerson = searchConfirmation(Results, people)
+        break;
+      default:
+        searchByTraits(people);
+        break;
+    }
+    mainMenu(ChosenPerson, people)
+}
 
+
+  
 /**
  * This helper function checks to see if the value passed into input is a "yes" or "no."
  * @param {String} input        A string that will be normalized via .toLowerCase().
@@ -217,6 +241,9 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
-
+//function traitType(input) {
+    //const relevantTraits = 'gender;dob;height;weight;eyeColor;occupation'.split(';');
+    //return relevantTraits.includes(input);
+  //}
 
 
