@@ -232,6 +232,28 @@ function filterBySingleTrait(people, traitID, traitValue) {
     });
 }
   
+function searchByMultipleTraits(people) {
+    let traits = promptFor(
+      `Enter traits to search with seperating each trait with a comma: \nOptions:\n${Object.keys(people[0]).slice(3,9).join('\n')}`,
+      chars
+    )
+      
+      .trim()
+      .split(",");
+    let ChosenTraits = [];
+    for (let trait of traits) {
+      let value = promptFor(`Please enter the ${trait}: `, chars);
+      ChosenTraits.push(value);
+    }
+  
+    
+    let temp = people;
+    for (let i = 0; i < traits.length; i++) {
+      temp = filterBySingleTrait(temp, traits[i], ChosenTraits[i]);
+    }
+    return temp;
+}
+  
 
   
 /**
