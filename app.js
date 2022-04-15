@@ -254,7 +254,20 @@ function searchByMultipleTraits(people) {
     return temp;
 }
   
-
+function searchConfirmation(results, people){
+  
+    displayPeople(results);
+    let ChosenPerson = promptFor("Did you see the person you were searching for? 'yes' or 'no'", yesNo);
+    if(ChosenPerson === "yes"){
+      return searchByName(people);
+    }
+    else{
+      return searchByTraits(people);
+    }
+  
+  
+    
+}
   
 /**
  * This helper function checks to see if the value passed into input is a "yes" or "no."
