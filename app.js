@@ -37,9 +37,6 @@ function app(people) {
 // End of app()
 
 /**
- * After finding a single person, we pass in the entire person-object that we found,
- * as well as the entire original dataset of people. We need people in order to find
- * descendants and other information that the user may want.
  * @param {Object[]} person     A singular object inside of an array.
  * @param {Array} people        A collection of person objects.
  * @returns {String}            The valid string input retrieved from the user.
@@ -112,9 +109,7 @@ function searchByName(people) {
 // End of searchByName()
 
 /**
- * This function will be useful for STRINGIFYING a collection of person-objects
- * first and last name properties in order to easily send the information
- * to the user in the form of an alert().
+
  * @param {Array} people        A collection of person objects.
  */
 function displayPeople(people) {
