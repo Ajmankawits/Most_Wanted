@@ -227,7 +227,24 @@ function yesNo(input) {
     return input.toLowerCase() === "yes" || input.toLowerCase() === "no";
 }
 // End of yesNo()
-
+function findPersonDescendants(person, people) {
+    let descendants = [];
+  
+    let children = people.filter(function(el) {
+      
+      return el.parents.includes(person.id);
+    });
+    descendants.push(...children);
+  
+    if (children.length > 0) {
+      for (let child of children) {
+        descendants.push(...findPersonDescendants(child, people));
+      }
+    } else {
+      return descendants;
+    }
+    return descendants;
+}
 /**
  * This helper function operates as a default callback for promptFor's validation.
  * Feel free to modify this to suit your needs.
