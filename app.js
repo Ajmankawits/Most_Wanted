@@ -321,4 +321,4 @@ function chars(input) {
     //return relevantTraits.includes(input);
   //}
 
-
+// Add comments - Do user functionality
