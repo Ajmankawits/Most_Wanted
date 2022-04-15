@@ -5,13 +5,8 @@
 //////////////////////////////////////////* Beginning Of Starter Code *//////////////////////////////////////////
 
 "use strict";
-//? Utilize the hotkey to hide block level comment documentation
-////* Mac: Press "CMD"+"K" and then "CMD"+"/"
-////* PC: Press "CTRL"+"K" and then "CTRL"+"/"
 
 /**
- * This is the main logic function being called in index.html.
- * It operates as the entry point for our entire application and allows
  * our user to decide whether to search by name or by traits.
  * @param {Array} people        A collection of person objects.
  */
@@ -29,8 +24,6 @@ function app(people) {
             searchResults = searchByName(people);
             break;
         case "no":
-            //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
-                //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchResults = searchByTraits(people);
             break;
         default:
