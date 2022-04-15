@@ -110,6 +110,9 @@ function searchByName(people) {
         if (person.firstName === firstName && person.lastName === lastName) {
             return true;
         }
+        else {
+          return false;
+        }
     });
     return foundPerson;
 }
@@ -165,6 +168,9 @@ function findPersonFamily(person, people) {
       });
       family.push(...parents);
     }
+    else {
+      return false;
+    }
   
     var siblings = people.filter(function(el) {
         for (let parent of person.parents) {
@@ -175,7 +181,8 @@ function findPersonFamily(person, people) {
     });
     family.push(...siblings);
     return family;
-}
+  }
+    
 
 
 /**
