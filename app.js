@@ -216,6 +216,16 @@ function searchByTraits(people) {
     mainMenu(ChosenPerson, people)
 }
 
+function searchBySingleTrait(people) {
+    var trait = promptFor(
+        `Enter trait to search for: \nOptions:\n${Object.keys(people[0]).slice(3,9).join('\n')}`,
+        chars 
+    );
+    let traitValue = promptFor(`Enter trait ${trait}: `, chars);
+
+    return filterBySingleTrait(people, trait, traitValue);
+}
+
 
   
 /**
