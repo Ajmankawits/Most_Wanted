@@ -226,6 +226,12 @@ function searchBySingleTrait(people) {
     return filterBySingleTrait(people, trait, traitValue);
 }
 
+function filterBySingleTrait(people, traitID, traitValue) {
+    return people.filter(function(el) {
+      return el[traitID] == traitValue;
+    });
+}
+  
 
   
 /**
