@@ -214,7 +214,7 @@ function searchByTraits(people) {
 function searchBySingleTrait(people) {
     var trait = promptFor(
         `Enter trait to search for: \nOptions:\n${Object.keys(people[0]).slice(3,9).join('\n')}`,
-        chars 
+        traitType 
     );
     let traitValue = promptFor(`Enter trait ${trait}: `, chars);
 
@@ -304,9 +304,44 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
-//function traitType(input) {
-    //const relevantTraits = 'gender;dob;height;weight;eyeColor;occupation'.split(';');
-    //return relevantTraits.includes(input);
-  //}
+function traitType(input) {
+    const relevantTraits = 'gender;dob;height;weight;eyeColor;occupation'.split(';');
+    return relevantTraits.includes(input);
+  }
 
-// Add comments - Do user functionality
+
+/**
+ * This function's purpose is twofold:
+ * First, to generate a prompt with the value passed in to the question parameter.
+ * Second, to ensure the user input response has been validated.
+ * @param {String} question     A string that will be passed into prompt().
+ * @param {Function} valid      A callback function used to validate basic user input.
+ * @returns {String}            The valid string input retrieved from the user.
+ */
+ function promptFor(question, valid) {
+  do {
+      var response = prompt(question);
+  } while (!response || !valid(response));
+  return response;
+}
+// End of promptFor()
+
+/**
+* This helper function checks to see if the value passed into input is a "yes" or "no."
+* @param {String} input        A string that will be normalized via .toLowerCase().
+* @returns {Boolean}           The result of our condition evaluation.
+*/
+function yesNo(input) {
+  return input.toLowerCase() === "yes" || input.toLowerCase() === "no";
+}
+// End of yesNo()
+
+/**
+* This helper function operates as a default callback for promptFor's validation.
+* Feel free to modify this to suit your needs.
+* @param {String} input        A string.
+* @returns {Boolean}           Default validation -- no logic yet.
+*/
+function chars(input) {
+  return true; // Default validation only
+}
